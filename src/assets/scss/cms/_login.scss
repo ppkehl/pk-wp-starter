@@ -1,0 +1,64 @@
+//################################################################################################################
+//
+//   LOGIN SCREEN
+//
+//################################################################################################################
+
+body.login {
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+
+  // Text links
+  #nav a,
+  #backtoblog a {
+    color: #000;
+  }
+
+  // Button
+  .button-primary {
+    background: #21593b;
+    border-color: #21593b #21593b #21593b;
+    box-shadow: 0 1px 0 #21593b;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 -1px 1px #21593b, 1px 0 1px #21593b, 0 1px 1px #21593b,
+      -1px 0 1px #21593b;
+    &:hover {
+      background: #21593b;
+      border-color: #21593b #21593b #21593b;
+      box-shadow: 0 1px 0 #21593b;
+    }
+  }
+
+  // Login form
+  .loginform {
+    margin-top: 20px;
+    margin-left: 0;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 4%);
+    border: 2px solid #215937;
+  }
+
+  // Message
+  #login_error,
+  .message {
+    border-left: 3px solid #21593b;
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 10%);
+  }
+
+  // Logo
+  h1 a {
+    width: 220px;
+    height: 150px;
+    background-size: contain;
+    background-position: center;
+    background-image: url(../imgs/logo.svg);
+  }
+}

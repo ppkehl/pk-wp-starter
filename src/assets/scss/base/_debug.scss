@@ -1,0 +1,57 @@
+@use "../utility/utils/mixins" as *;
+
+//################################################################################################################
+//
+//   DEBUGGER FUNCTIONS
+//
+//################################################################################################################
+
+.media-query-debugger{
+    z-index: 999;
+    &:before{
+        display: block;
+    }
+    @include bp(false, 'xs') {
+        background-color: rgb(255, 0, 0);
+        &:before{
+            content:'base';
+        }
+    }
+    @include bp('xs', 'mx') {
+        background-color: rgb(255, 94, 0);
+        &:before{
+            content:'xs';
+        }
+    }
+    @include bp('mx', 'md') {
+        background-color: rgb(250, 150, 0);
+        &:before{
+            content:'mx';
+        }
+    }
+    @include bp('md', 'lg') {
+        background-color: rgb(115, 255, 0);
+        &:before{
+            content:'md';
+        }
+    }
+    @include bp('lg', 'xl') {
+        background-color: rgb(0, 247, 255);
+        &:before{
+            content:'lg';
+        }
+    }
+    @include bp('xl', 'xxl') {
+        background-color: rgb(0, 28, 184);
+        color: #fff;
+        &:before{
+            content:'xl';
+        }
+    }
+    @include bp('xxl', false) {
+        background-color: rgb(247, 0, 255);
+        &:before{
+            content:'xxl';
+        }
+    }
+}

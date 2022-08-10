@@ -1,0 +1,221 @@
+@use "abstracts" as *;
+@use "../utility/utils/functions" as *;
+@use "../utility/utils/mixins" as *;
+
+//################################################################################################################
+//
+//   HEADER
+//
+//################################################################################################################
+
+.logo {
+	h1 {
+		line-height: 0;
+		opacity: 0;
+		margin: 0;
+	}
+
+	svg {
+		width: 100%;
+		height: auto;
+	}
+}
+
+main {
+	padding-top: var(--header-height-sm);
+
+	@include bp('md', 'lg') {
+		padding-top: var(--header-height-md);
+	}
+
+	@include bp('lg', false) {
+		padding-top: var(--header-height-lg);
+	}
+}
+
+
+nav {
+	ul.menu {
+		@include bp(false, 'lg') {
+			transition: all 0.3s ease-in-out;
+			position: fixed;
+			height: calc(100% - var(--header-height-sm));
+			top: var(--header-height-sm);
+			margin: 0;
+			right: -100%;
+			text-align: right;
+			font-size: 1.2em;
+			display: flex;
+			background-color: var(--header-menu-background-color);
+			flex-wrap: wrap;
+			flex-direction: column;
+			justify-content: unset;
+			align-items: flex-end;
+			padding: 1rem;
+
+			li {
+				position: relative;
+				z-index: 10;
+				padding-left: var(--spc-5);
+				padding-right: var(--spc-5);
+				padding-top: var(--spc-2\.5);
+				padding-bottom: var(--spc-2\.5);
+
+				&.current-menu-item {
+					background-color: rp("menu-mobile-item-selected-background-color");
+					color: rp("menu-mobile-item-selected-text-color");
+					border-radius: 5px;
+					border-color: rp("menu-mobile-item-selected-border-color");
+				}
+			}
+
+			&:before {
+				content: "";
+				position: fixed;
+				width: calc(100vw);
+				height: calc(100vh - var(--header-height-sm));
+				left: 0;
+				top: var(--header-height-sm);
+				visibility: hidden;
+				background-color: #ffffff00;
+				transition: all 0.3s ease-in-out;
+			}
+		}
+
+		@include bp('lg', false) {
+			li:not(.btn) {
+				color: rp("menu-wide-text-color");
+
+				a {
+					position: relative;
+					transition: all 0.3s ease-in-out;
+
+					&:after {
+						content: "";
+						width: 0;
+						height: 2px;
+						background-color: rp("menu-wide-item-selected-border-color");
+						display: block;
+						margin-top: 3px;
+						transform: translateX(-50%);
+						left: 50%;
+						transition: all 0.3s ease-in-out;
+						position: absolute;
+					}
+
+					&:hover {
+						&:after {
+							width: 100%;
+						}
+					}
+				}
+
+				&.current-menu-item {
+					a {
+						&:after {
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#menu-toggle:checked {
+	~.menu-wrap>ul {
+		right: 0;
+
+		&:before {
+			visibility: visible;
+			background-color: #ffffff96;
+		}
+	}
+}
+
+header {
+	background-color: var(--header-background-color);
+	transition: all 0.3s ease-in-out;
+	height: var(--header-height-sm);
+
+	@include bp('md', 'lg') {
+		height: var(--header-height-md);
+	}
+
+	@include bp('lg', false) {
+		height: var(--header-height-lg);
+	}
+}
+
+.fixed-menu,
+.no-js,
+.single {
+	header {}
+}
+
+
+@include menu-dynamic-switch-styling("#menu-toggle", "symmetric-cross", 20, 2);
+
+#menu-toggle,
+label[for=menu-toggle] {
+	position: absolute;
+	right: 0 !important;
+	top: 50%;
+	margin-top: -10px;
+	cursor: pointer;
+	~label {
+		span {
+			background-color: var(--header-menu-toggler-color);
+		}
+	}
+}
+
+#theme-toggle {
+	width: 30px;
+	height: 30px;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	border-radius: 50%;
+	&:before,
+	&:after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		display: block;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+	&:before {
+		background-image: url(../../public/icons/dark-mode.svg);
+		transition: all 0.8s ease-in-out;
+		left: 0;
+		transform: rotate(0);
+		opacity: 1;
+	}
+	&:after {
+		background-image: url(../../public/icons/light-mode.svg);
+		transition: all 0.8s ease-in-out;
+		left: 100%;
+		transform: rotate(-180deg);
+		opacity: 0;
+	}
+}
+
+.dark {
+	#theme-toggle {
+		&:before {
+			left: -100%;
+			transform: rotate(-65deg);
+			opacity: 0;
+		}
+
+		&:after {
+			left: 0;
+			transform: rotate(0deg);
+			opacity: 1;
+		}
+	}
+}

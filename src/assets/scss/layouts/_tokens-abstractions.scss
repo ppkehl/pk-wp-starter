@@ -1,0 +1,23 @@
+@use '../abstracts/tokens' as *;
+
+//################################################################################################################
+//
+//    TOKENS ABSTRACTIONS
+//
+//    Create an abstraction layer between tokens primitives and layouts elements
+//
+//################################################################################################################
+
+:root{
+//===============================================================================================================
+// HEADER
+//===============================================================================================================
+
+  --header-height-sm: #{$spacing-base-16};
+  --header-height-md: #{$spacing-base-20};
+  --header-height-lg: #{$spacing-base-24};
+  --header-background-color: #{$color-white};
+  --header-menu-toggler-color: #{$color-black};
+  --header-menu-background-color: #{$color-white};
+
+}
